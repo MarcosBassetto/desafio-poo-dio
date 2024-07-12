@@ -1,8 +1,6 @@
 package br.com.di.desafio;
 
-import br.com.di.desafio.dominio.Conteudo;
-import br.com.di.desafio.dominio.Curso;
-import br.com.di.desafio.dominio.Mentoria;
+import br.com.di.desafio.dominio.*;
 
 import java.time.LocalDate;
 
@@ -32,6 +30,33 @@ public class Main {
         mentoria.setData(LocalDate.parse("2024-12-15"));
 
         System.out.println(mentoria);
+
+        Bootcamp bootcamp = new Bootcamp();
+
+        bootcamp.setNome("Bootcamp Java Developer");
+        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
+        bootcamp.getConteudos().add(curso1);
+        bootcamp.getConteudos().add(curso2);
+        bootcamp.getConteudos().add(mentoria);
+
+        System.out.println(bootcamp);
+
+        Dev dev = new Dev();
+        dev.setNome("Jake");
+        dev.increverBootcamp(bootcamp);
+        dev.progredir();
+        System.out.println("XP dev1 "+dev.calcularTotalXp());
+        System.out.println("Conteudos Inscritos dev1: "+dev.getConteudosInscrito());
+        System.out.println("Conteudos Concluido dev1: "+dev.getConteudosConcluidos());
+
+
+        Dev dev2 = new Dev();
+        dev2.setNome("Margariada");
+        dev2.increverBootcamp(bootcamp);
+        System.out.println("XP dev2 "+dev2.calcularTotalXp());
+        System.out.println("Conteudos Inscritos dev2: "+dev2.getConteudosInscrito());
+        System.out.println("Conteudos Concluido dev2: "+dev2.getConteudosConcluidos());
+
 
     }
 }

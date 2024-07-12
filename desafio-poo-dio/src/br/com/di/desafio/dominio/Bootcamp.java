@@ -1,7 +1,6 @@
 package br.com.di.desafio.dominio;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -10,28 +9,26 @@ public class Bootcamp {
 
     private String nome;
     private String descricao;
-    private LocalDate dataInicial = LocalDate.now();
-    private LocalDate dataFinal = LocalDate.now().plusDays(45);
-    private Set<Dev> devsInscritos = new HashSet<>();
-    private Set<Conteudo> conteudos = new LinkedHashSet<>();
+    private LocalDate dataInicial;
+    private LocalDate dataFinal;
+    private Set<Dev> devsInscritos;
+    private Set<Conteudo> conteudos;
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bootcamp bootcamp = (Bootcamp) o;
-        return Objects.equals(nome, bootcamp.nome) && Objects.equals(descricao, bootcamp.descricao) && Objects.equals(dataInicial, bootcamp.dataInicial) && Objects.equals(dataFinal, bootcamp.dataFinal) && Objects.equals(devsInscritos, bootcamp.devsInscritos) && Objects.equals(conteudos, bootcamp.conteudos);
+    public Bootcamp() {
+        this.dataInicial = LocalDate.now();
+        this.dataFinal = LocalDate.now().plusDays(45);
+        this.devsInscritos = new LinkedHashSet<>();
+        this.conteudos = new LinkedHashSet<>();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, conteudos);
-    }
-
-    @Override
-    public String toString() {
-        return "Bootcamp{}";
+    public Bootcamp(String nome, String descricao, LocalDate dataInicial, LocalDate dataFinal,
+                    Set<Dev> devsInscritos, Set<Conteudo> conteudos) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+        this.devsInscritos = devsInscritos;
+        this.conteudos = conteudos;
     }
 
     public String getNome() {
@@ -80,5 +77,30 @@ public class Bootcamp {
 
     public void setConteudos(Set<Conteudo> conteudos) {
         this.conteudos = conteudos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bootcamp bootcamp = (Bootcamp) o;
+        return Objects.equals(nome, bootcamp.nome) && Objects.equals(descricao, bootcamp.descricao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, descricao);
+    }
+
+    @Override
+    public String toString() {
+        return "Bootcamp{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", dataInicial=" + dataInicial +
+                ", dataFinal=" + dataFinal +
+                ", devsInscritos=" + devsInscritos +
+                ", conteudos=" + conteudos +
+                '}';
     }
 }
